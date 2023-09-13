@@ -1,24 +1,24 @@
-name: Update Profile
+# name: Update Profile
 
-on:
-  push:
-    branches:    
-      - main
+# on:
+#   push:
+#     branches:    
+#       - main
 
-jobs:
-  update-profile:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Await for Vercel deployment
-        uses: UnlyEd/github-action-await-vercel@v1.1.2
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        with:
-          deployment-url: vanslog.io
-      - name: Apply changes to profile repository
-        run: >
-          curl -XPOST -u "${{ secrets.USERNAME }}:${{ secrets.PAT_TOKEN }}"
-          -H "Accept: application/vnd.github.everest-preview+json"
-          -H "Content-Type: application/json"
-          https://api.github.com/repos/${{ secrets.USERNAME }}/${{ secrets.USERNAME }}/actions/workflows/${{ secrets.WORKFLOW }}.yml/dispatches
-          -d '{"ref": "main"}'
+# jobs:
+#   update-profile:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Await for Vercel deployment
+#         uses: UnlyEd/github-action-await-vercel@v1.1.2
+#         env:
+#           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+#         with:
+#           deployment-url: vanslog.io
+#       - name: Apply changes to profile repository
+#         run: >
+#           curl -XPOST -u "${{ secrets.USERNAME }}:${{ secrets.PAT_TOKEN }}"
+#           -H "Accept: application/vnd.github.everest-preview+json"
+#           -H "Content-Type: application/json"
+#           https://api.github.com/repos/${{ secrets.USERNAME }}/${{ secrets.USERNAME }}/actions/workflows/${{ secrets.WORKFLOW }}.yml/dispatches
+#           -d '{"ref": "main"}'
